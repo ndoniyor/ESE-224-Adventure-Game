@@ -26,6 +26,10 @@ int enemy::getDMG(){
     return AttackDamage;
 }
 
+int enemy::getCurrency(){
+    return Currency;
+}
+
 void enemy::setName(string n){
     Name = n;
 }
@@ -42,11 +46,21 @@ void enemy::setDMG(int ad){
     AttackDamage = ad;
 }
 
+void setCurrency(int c){
+    Currency = c;
+}
 void enemy::ModifyHealth(int x){
     HealthPoints += x;
 }
 
 void enemy::ModifyDamage(int x){
     AttackDamage += x;
+}
+
+friend player::ostream& operator<<(ostream& os, const player& p)
+{
+    os <<"OS "<<p.Name << " " << p.MaxHealth << " " << p.HealthPoints << " " << p.AttackDamage << " " << p.Level << " " << p.Currency << endl;
+    return os;
+    
 }
 
