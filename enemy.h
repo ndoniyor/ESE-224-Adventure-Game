@@ -20,6 +20,8 @@ class enemy
         int getDMG();                   //returns the current damage
         int getCurrency();
         void setName(string n);
+        int getLevel();
+        void setLevel(int l);
         void setMaxHP(int mh);
         void setHP(int hp);             //sets the current health
         void setDMG(int ad);            //sets the current damage

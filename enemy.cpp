@@ -57,6 +57,14 @@ void enemy::ModifyDamage(int x){
     AttackDamage += x;
 }
 
+int enemy::getLevel(){
+    return Level;
+}
+
+void enemy::setLevel(int l){
+    Level = l;
+}
+
 friend player::ostream& operator<<(ostream& os, const player& p)
 {
     os <<"OS "<<p.Name << " " << p.MaxHealth << " " << p.HealthPoints << " " << p.AttackDamage << " " << p.Level << " " << p.Currency << endl;
