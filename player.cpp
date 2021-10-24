@@ -27,7 +27,9 @@ int player::getDMG(){
 int player::getCurrency(){
     return Currency;
 }
-
+int player::getDurability(){
+    return Durability;
+}
 void player::setName(string n){
     Name = n;
 }
@@ -55,7 +57,9 @@ void player::ModifyHealth(int x){
 void player::ModifyDamage(int x){
     AttackDamage += x;
 }
-
+void player::setDurability(int d){
+    Durability=d;
+}
 friend player::ostream& operator<<(ostream& os, const player& p)
 {
     os <<"OS "<<p.Name << " " << p.MaxHealth << " " << p.HealthPoints << " " << p.AttackDamage << " " << p.Currency << endl;
