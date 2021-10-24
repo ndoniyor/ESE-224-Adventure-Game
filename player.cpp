@@ -2,11 +2,12 @@
 #include <iostream>
 using namespace std;
 
-player::player(string n, int mh, int hp, int ad){
+player::player(string n, int mh, int hp, int ad, int d){
     Name = n;
     MaxHealth = mh;
     HealthPoints = hp;
     AttackDamage = ad;
+    Durability = d;
 }
 
 string player::getName(){

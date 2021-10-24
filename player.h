@@ -13,7 +13,7 @@ class player
         int Currency;
         int Durability;
     public:
-        player(string n, int mh, int hp, int ad);               //default constructor
+        player(string n, int mh, int hp, int ad, int d);               //default constructor
         string getName();
         int getMaxHP();         //returns the maximum health
         int getHP();            //returns the current health
