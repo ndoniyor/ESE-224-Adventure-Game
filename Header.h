@@ -82,8 +82,8 @@ public:
 class scoreboard
 {
 private:
-    string SB_Name;            //This should hold the player’s name
-    int SB_score;              // score of player
+    string SB_Name;               //This should hold the player’s name
+    int SB_score;                // score of player
     string SB_difficulty;       //dif of game
     int SB_difficultyMod;
     int SB_Floor;
@@ -100,6 +100,7 @@ public:
     int getScore();
     string getDiff();
     int getFloor();
+    int getDiffMod();
 
     void AddScore(int s);
 
