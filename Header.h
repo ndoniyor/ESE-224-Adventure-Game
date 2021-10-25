@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <string>
 #include <fstream>
 #include <iostream>
@@ -9,24 +9,30 @@ using namespace std;
 class player
 {
 private:
-    string Name;            //This should hold the player’s name
+    string Name;            //This should hold the playerâ€™s name
     int MaxHealth;          //This should hold the maximum health of the player
     int HealthPoints;       //This should hold the current health of the player
     int AttackDamage;       //This should hold the attack damage of the player
+    int Currency;
+    int Durability;
 public:
-    player(string n, int mh, int hp, int ad);               //default constructor
+    player(string n, int mh, int hp, int ad, int d);               //default constructor
     string getName();
     int getMaxHP();         //returns the maximum health
     int getHP();            //returns the current health
     int getDMG();           //returns the current damage
+    int getCurrency();
+    int getDurability();
     void setName(string n);
     void setMaxHP(int mh);
     void setHP(int hp);        //sets the current health
     void setDMG(int ad);       //sets the current damage
-    void ModifyHealth(int x); //Increments or decrements the player’s health by the input value
-    void ModifyDamage(int x); //Increments or decrements the player’s attack damage by the input value
+    void ModifyHealth(int x); //Increments or decrements the playerâ€™s health by the input value
+    void ModifyDamage(int x); //Increments or decrements the playerâ€™s attack damage by the input value
+    void setCurrency(int c);
+    void setDurability(int d);
 
-    friend ostream& operator <<(ostream& os, const player& p); //needs to be implemented
+    friend ostream& operator <<(ostream& os, const player& p);
 };
 
 
@@ -34,25 +40,30 @@ public:
 class enemy
 {
 private:
-    string Name;            //This should hold the player’s name
+    string Name;            //This should hold the playerï¿½s name
     int MaxHealth;          //This should hold the maximum health of the player
     int HealthPoints;       //This should hold the current health of the player
     int AttackDamage;       //This should hold the attack damage of the player
     int Level = 0;
+    int Currency = 0;
 public:
     enemy(string n, int mh, int hp, int ad, int lvl);  //default constructor
     string getName();
     int getMaxHP();                 //returns the maximum health
     int getHP();                    //returns the current health
     int getDMG();                   //returns the current damage
+    int getCurrency();
+    int getLevel();
+    void setLevel(int l);
     void setName(string n);
     void setMaxHP(int mh);
     void setHP(int hp);             //sets the current health
     void setDMG(int ad);            //sets the current damage
-    void ModifyHealth(int x);       //Increments or decrements the player’s health by the input value
-    void ModifyDamage(int x);   //Increments or decrements the player’s attack damage by the input value
+    void setCurrency(int c);
+    void ModifyHealth(int x);       //Increments or decrements the playerï¿½s health by the input value
+    void ModifyDamage(int x);   //Increments or decrements the playerï¿½s attack damage by the input value
 
-    friend ostream& operator <<(ostream& os, const enemy& p); //needs to be implemented
+    friend ostream& operator << (ostream& os, const enemy& p); //needs to be implemented
 };
 
 
@@ -66,7 +77,7 @@ private:
     int W_cost;
 public:
     weapon();
-    weapon(string i, int d);
+    weapon(string i, int d, int u, int c);
     void setItem(string);
     void setDMG(int);
     void setUses(int);
@@ -82,8 +93,8 @@ public:
 class scoreboard
 {
 private:
-    string SB_Name;               //This should hold the player’s name
-    int SB_score;                // score of player
+    string SB_Name;            //This should hold the playerï¿½s name
+    int SB_score;              // score of player
     string SB_difficulty;       //dif of game
     int SB_difficultyMod;
     int SB_Floor;
@@ -100,7 +111,6 @@ public:
     int getScore();
     string getDiff();
     int getFloor();
-    int getDiffMod();
 
     void AddScore(int s);
 
@@ -111,6 +121,7 @@ public:
 
 class FileOperations {
 private:
+    //default constructor
     string SB_file_name = "scoreboard.txt";
     //holds the name of the scoredboard file
     fstream SB_myFile;
@@ -126,9 +137,10 @@ private:
 
 
 public:
-    void Save2FileP(player p);
+    FileOperations();
+    void Save2FileP(player& p);
     //function Saves player progress into a file
-    void Save2FileS(scoreboard s);
+    void Save2FileS(scoreboard& s);
     //function saves scoreboard progress into a file
     void ChooseFile(scoreboard&, player&);
     //function the asks the user to select the file to use
