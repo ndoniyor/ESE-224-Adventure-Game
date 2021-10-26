@@ -12,10 +12,38 @@ void PlayerOptions(player& p, FileOperations& f, scoreboard& s);
 int main(){
 	player p1("test", 20, 18, 2, 1);
 	enemy e1("bad", 30, 15, 3, 2);
+    enemy e2("bad", 30, 15, 3, 2);
+    enemy e3("bad", 30, 15, 3, 2);
+    enemy e4("bad", 30, 15, 3, 2);
 	scoreboard s1("testscore", 200, "hardcore", 2 ,3);
 	FileOperations f1();
 	playerCombat(p1, e1, s1);
-	return 0;
+    int floorNum;
+    bool gaming = true;
+    while (gaming) {
+        for (floorNum < 5; floorNum++;) {
+            PlayerOptions(p1,s1);
+            if (floorNum = 1) {
+                playerCombat(p1, e1, s1);
+            }
+            if (floorNum = 2) {
+                playerCombat(p1, e1, s1);
+            }
+            if (floorNum = 3) {
+                playerCombat(p1, e1, s1);
+            }
+            if (floorNum = 4) {
+                playerCombat(p1, e1, s1);
+            }
+            if (floorNum != 4) {
+                cout << "Congratulations champion you have slain your foe and may proceed to floor " << (floorNum + 1) << endl;
+            }
+            if (floorNum == 4) {
+                cout << "COngratulations brave hero you have cast the evil from this realm and saved the world" << endl;
+            }
+        }
+    }
+
 
 }
 
