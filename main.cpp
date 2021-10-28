@@ -5,7 +5,7 @@ using namespace std;
 void playerCombat(player& p, enemy& e, scoreboard& s);
 bool enemyCombat(player& p, enemy& e, scoreboard& s);
 void PlayerOptions(player& p, FileOperations& f, scoreboard& s);
-
+void randomEvents(player& p, FileOperations&, scoreboard& s);
 
 
 
@@ -16,30 +16,42 @@ int main(){
     enemy e3("bad", 30, 15, 3, 2);
     enemy e4("bad", 30, 15, 3, 2);
 	scoreboard s1("testscore", 200, "hardcore", 2 ,3);
-	FileOperations f1();
+	FileOperations file;
 	playerCombat(p1, e1, s1);
-    int floorNum;
+    int floorNum = 0;
     bool gaming = true;
     while (gaming) {
         for (floorNum < 5; floorNum++;) {
-            PlayerOptions(p1,s1);
-            if (floorNum = 1) {
+            PlayerOptions(p1, file, s1);
+            if (floorNum == 1) {
+                randomEvents(p1, file, s1);
                 playerCombat(p1, e1, s1);
+                file.Save2FileP(p1);
+                file.Save2FileS(s1);
             }
-            if (floorNum = 2) {
+            if (floorNum == 2) {
+                randomEvents(p1, file, s1);
                 playerCombat(p1, e1, s1);
+                file.Save2FileP(p1);
+                file.Save2FileS(s1);
             }
-            if (floorNum = 3) {
+            if (floorNum == 3) {
+                randomEvents(p1, file, s1);
                 playerCombat(p1, e1, s1);
+                file.Save2FileP(p1);
+                file.Save2FileS(s1);
             }
-            if (floorNum = 4) {
+            if (floorNum == 4) {
+                randomEvents(p1, file, s1);
                 playerCombat(p1, e1, s1);
+                file.Save2FileP(p1);
+                file.Save2FileS(s1);
             }
             if (floorNum != 4) {
                 cout << "Congratulations champion you have slain your foe and may proceed to floor " << (floorNum + 1) << endl;
             }
             if (floorNum == 4) {
-                cout << "COngratulations brave hero you have cast the evil from this realm and saved the world" << endl;
+                cout << "Congratulations brave hero you have cast the evil from this realm and saved the world" << endl;
             }
         }
     }
@@ -209,4 +221,115 @@ void PlayerOptions(player& p, FileOperations& f, scoreboard& s) {
         }
     }
 
+}
+
+
+void randomEvents(player& p, FileOperations&, scoreboard& s) {
+    int event = rand() % 100;
+    if (event < 24) {
+        int pick = 0;
+        cout << "You come across three chests which do you open? (1, 2, or 3)";
+        cin >> pick;
+        if (pick == 1) {
+            cout << "The chest is rife with riches you gain (400 points)";
+            s.AddScore(400);
+            return;
+           }
+        if (pick == 2) {
+            cout << "The has a decent amount of treasure you (gain 200 points)";
+            s.AddScore(200);
+            return;
+           }
+        if (pick == 3) {
+            cout << "The chest is empty but could still fetch some gold for the wood (gain 50 points)";
+            s.AddScore(50);
+            return;
+           }
+        else {
+            cout << "Invalid input, you are unable to overcome your indecision and move on";
+            return;
+        }
+    }
+    if (event > 23 && event < 54) {
+        char pick = ' ';
+        cout << "You see some gold burried in a pile of rusted weapons, do you try to grab it?(y/n)";
+        cin >> pick;
+        int event2 = rand() % 100;
+        if (pick == 'y') {
+            if (event2 > 49) {
+                cout << "You sucessfully extract the gold (gain 400 points)";
+                s.AddScore(400);
+                return;
+            }
+            if (event < 49) {
+                cout << "You cut yourself on the sword and fail to get the gold (lose 1 hp)";
+                p.setHP(p.getHP() - 1);
+                return;
+            }
+        }
+        if (pick == 'n') {
+            cout << "You move on, grabbing a coin you find at your feet (gain 5 points)";
+            s.AddScore(5);
+            return;
+        }
+        else {
+            cout << "Invalid input, you are unable to overcome your indecision and move on";
+            return;
+        }
+
+    }
+    if (event > 53 && event < 74) {
+        char pick = ' ';
+        cout << "You happen across table with a mysterious coin, it urges you to flip it. You see the word tails scratched into the table. Flip it? (y/n)";
+            cin >> pick;
+            if (pick == 'y') {
+                int flip = rand() % 100;
+                if (flip > 44) {
+                    cout << "Heads, you feel a mysterious pain (lose 1 hp)";
+                    p.setHP(p.getHP() - 1);
+                    return;
+                }
+                if (flip < 44) {
+                    cout << "Tails, the coin vanishes and a sack of gold appears (gain 200 points)";
+                    s.AddScore(200);
+                    return;
+                }
+            }
+            if (pick == 'n') {
+                "You pocket the coin and move on.";
+                return;
+            }
+            else {
+                cout << "Invalid input, you are unable to overcome your indecision and move on";
+                return;
+            }
+
+    }
+    if (event > 73 && event < 99) {
+        char pick = ' ';
+        cout << "You see a giant golden helmet, do you try to take it with you? (y/n)";
+        cin >> pick;
+        if (pick == 'y') {
+            int event2 = rand() % 100;
+            if (event2 > 44) {
+                cout << "You try to pick up the helmet but it is too heavy (lose 1 hp)";
+                p.setHP(p.getHP() - 1);
+                return;
+            }
+            if (event2 < 44) {
+                cout << "You pick up the helmet without injuring yourself, arm day has paid off (gain 500)";
+                s.AddScore(500);
+                return;
+            }
+        }
+        if (pick == 'n') {
+            cout << "You dont try to pick it up, you feel condfident in your decision and your current helmet (gain 1 hp)";
+            p.setHP(p.getHP() + 1);
+            return;
+        }
+        else {
+            cout << "Invalid input, you are unable to overcome your indecision and move on";
+            return;
+    }
+    }
 }
