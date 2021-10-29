@@ -14,6 +14,7 @@ void FileOperations::Save2File(player&) {
 	p_myFile << player.getMaxHP() << "\n";
 	p_myFile << player.getHP() << "\n";
 	p_myFile << player.getDMG() << "\n";
+    p_myFile << player.getCurrecy() << "\n";
 }
 
 void FileOperations::Save2File(scoreboard&) {
