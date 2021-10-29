@@ -1,5 +1,6 @@
 #include "Header.h"
-
+using namespace std;
+#include <fstream>
 
 
 void FileOperations::Save2FileP(player p) {
@@ -48,10 +49,10 @@ void FileOperations::Save2FileS(scoreboard s) {
 
 }
 
-void FileOperations::ChooseFile(scoreboard&, player&) {
+void FileOperations::ChooseFile(scoreboard& s, player& p) {
 	char oper;
 	string name;
-	ofstream file1;
+	ifstream file1;
 	cout << "Would you like to create a new file (n) or open an existing one (e)." << endl;
 	cin >> oper;
 	if (oper == 'n') {
@@ -68,7 +69,22 @@ void FileOperations::ChooseFile(scoreboard&, player&) {
 		if (file1.fail()) {
 			cerr << "This file does not exist.";
 		}
-		
+		while (!file1.eof()) {
+			string name;
+			file1 >> name;
+			p.setName(name);
+			int maxH;
+			file1 >> maxH;
+			p.setMaxHP(maxH);
+			int curHP;
+			file1 >> curHP;
+			p.setHP(curHP);
+			int dmg;
+			file1 >> dmg;
+			p.setDMG(dmg);
+			
+			
+		}
 		
 	}
 }
