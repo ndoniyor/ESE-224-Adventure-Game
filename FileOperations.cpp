@@ -1,5 +1,6 @@
 #include "FileOperations.h"
 #include "scoreboard.h"
+#include <of
 
 void FileOperations::Save2File(player&) {
 	cout << "Which file would you like to save to?";
@@ -17,7 +18,7 @@ void FileOperations::Save2File(player&) {
 
 void FileOperations::Save2File(scoreboard&) {
 
-	SB_myFile.open(SB_file_name);
+	SB_myFile.open(SB_file_name, app);
 	if (SB_myFile.fail()) {
 		cerr << "Scoreboard file could not be opened";
 		exit(1);

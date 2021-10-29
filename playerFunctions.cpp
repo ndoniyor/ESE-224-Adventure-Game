@@ -19,7 +19,7 @@ void PlayerOptions (player& p, FileOperations &f, scoreboard& s){
             " more hits. To keep yourself as not dead as you currently find yourself you can deal " << p.getDMG() << "damage."
             goto optionmenu;
         case 2:
-            break;
+            return;
         case 3:
             s.SB_out();
             goto optionmenu;
