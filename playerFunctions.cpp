@@ -29,14 +29,14 @@ void PlayerOptions (player& p, FileOperations &f, scoreboard& s){
             cout << "Progress saved." << endl;
             exit(0);
         case 5:
+            int flr = s.getFloor();
             int wep;
-            weapon w1("Moonlight Greatsword", 120, 30, 500);
-            weapon w2("Whirligig Saw", 100, 50, 500);
-            weapon w3("Pyromancy Flame",75, 25, 200);
-            weapon w4("Leviathan Axe", 200, 30, 700);
-            weapon w5("Master Sword", 1000, 1, 1000);
-            choice:
-            cout << "Shopkeeper's Wares:" << endl
+            cout << "Shopkeeper's Wares:" << endl;
+            for(int i = 0; i < flr; i++){
+                
+                cout << weapons[2]
+            }
+            
                 <<  "X - Name, Damage, Uses, Cost" << endl
                 <<  "1 - Moonlight Greatsword, 120, 30, 500" << endl
                 <<  "2 - Whirligig Saw, 100, 50, 500" << endl

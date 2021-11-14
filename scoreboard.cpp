@@ -1,4 +1,4 @@
-#include "scoreboard.h"
+#include "header.h"
 #include <string.h>
 #include <iostream>
 #include <fstream>
@@ -6,14 +6,14 @@ using namespace std;
 
 scoreboard::scoreboard()
 {
-     SB_Name = "enter name";            //This should hold the player’s name
-     SB_score = 0;              // score of player
-     SB_difficulty = "easy";       //dif of game
-     SB_difficultyMod = 1;
-     SB_Floor = 1;
+    SB_Name = "enter name";         //This should hold the player’s name
+    SB_score = 0;              // score of player
+    SB_difficulty = "easy";       //dif of game
+    SB_difficultyMod = 1;
+    SB_Floor = 1;
 }
 
-scoreboard::scoreboard(string n, int s, string d, int dm, int f)
+scoreboard::scoreboard(string n, int s, string d, double dm, int f)
 {
     SB_Name = n;
     SB_score = s;
@@ -37,7 +37,7 @@ void scoreboard::setDiff(string d)
     SB_difficulty = d;
 }
 
-void scoreboard::setDiffMod(int dm)
+void scoreboard::setDiffMod(double dm)
 {
     SB_difficultyMod = dm;
 }
@@ -62,6 +62,11 @@ string scoreboard::getDiff()
     return SB_difficulty;
 }
 
+double scoreboard::getDiffMod()
+{
+    return SB_difficultyMod;
+}
+
 int scoreboard::getFloor()
 {
     return SB_Floor;
@@ -69,21 +74,22 @@ int scoreboard::getFloor()
 
 void scoreboard::AddScore(int s)
 {
-     SB_score +=s;
-     
+    SB_score += s;
+
 }
 
 void scoreboard::SB_out()
 {
-    cout << "player name:" << SB_Name << endl;
-    cout << "Difficulty:" << SB_difficulty << endl;
-    cout << "Floor is:" << SB_Floor << endl;
-
+    cout << "player name: " << SB_Name << endl;
+    cout << "Difficulty: " << SB_difficulty << endl;
+    cout << "Floor is: " << SB_Floor << endl;
+    cout << "Score: " << SB_score << endl;
+    cout << endl;
 }
 
-ostream& operator<<(ostream& os, const scoreboard& p)
+ostream& operator << (ostream& os, const scoreboard& p)
 {
-    os <<"OS "<<p.SB_Name << " " << p.SB_difficulty << " " << p.SB_Floor << " " << p.SB_score << " " << p.SB_difficultyMod << endl;
+    os << "OS " << p.SB_Name << " " << p.SB_difficulty << " " << p.SB_Floor << " " << p.SB_score << " " << p.SB_difficultyMod << endl;
     return os;
-    
+
 }

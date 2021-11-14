@@ -15,6 +15,7 @@ private:
     int AttackDamage;       //This should hold the attack damage of the player
     int Currency;
     int Durability;
+    int floor;
 public:
     player(string n, int mh, int hp, int ad, int d);               //default constructor
     string getName();
@@ -32,7 +33,6 @@ public:
     void setCurrency(int c);
     void setDurability(int d);
 
-    friend ostream& operator <<(ostream& os, const player& p);
 };
 
 
@@ -63,7 +63,7 @@ public:
     void ModifyHealth(int x);       //Increments or decrements the player�s health by the input value
     void ModifyDamage(int x);   //Increments or decrements the player�s attack damage by the input value
 
-    friend ostream& operator << (ostream& os, const enemy& p); //needs to be implemented
+
 };
 
 
@@ -96,17 +96,17 @@ private:
     string SB_Name;            //This should hold the player�s name
     int SB_score;              // score of player
     string SB_difficulty;       //dif of game
-    int SB_difficultyMod;
+    double SB_difficultyMod;
     int SB_Floor;
 public:
     scoreboard();
-    scoreboard(string n, int s, string d, int dm, int f);
+    scoreboard(string n, int s, string d, double dm, int f);
     void setName(string n);
     void setScore(int s);
     void setDiff(string d);
-    void setDiffMod(int dm);
+    void setDiffMod(double dm);
     void setFloor(int f);
-
+    double getDiffMod();
     string getName();
     int getScore();
     string getDiff();
@@ -118,6 +118,12 @@ public:
 
     friend ostream& operator <<(ostream& os, const scoreboard& p); //needs to be implemented
 };
+
+class RandomEvent {
+public:
+    void getEvent(player& p, scoreboard& s);
+};
+
 
 class FileOperations {
 private:
@@ -138,14 +144,14 @@ private:
 
 public:
     FileOperations();
-    void Save2FileP(player& p);
+    void Save2FileP(player& p, scoreboard& s, vector<weapon>);
     //function Saves player progress into a file
-    void Save2FileS(scoreboard& s);
+    void Save2FileS(scoreboard& s, player& p);
     //function saves scoreboard progress into a file
-    void ChooseFile(scoreboard&, player&);
+    vector<string> ChooseFile(scoreboard& s, player& p);
     //function the asks the user to select the file to use
     void CloseFile();
     //function to close the files
-    void ScoreRank();
+    void ScoreRank(string outs);
     //function to output scores from all the scoreboards
 };

@@ -1,0 +1,7 @@
+﻿  FileOperations.cpp
+C:\Users\Owner\source\repos\Main stuff\Main stuff\FileOperations.cpp(20,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Owner\source\repos\Main stuff\Main stuff\FileOperations.cpp(55,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Owner\source\repos\Main stuff\Main stuff\FileOperations.cpp(56,25): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Owner\source\repos\Main stuff\Main stuff\FileOperations.cpp(68,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Owner\source\repos\Main stuff\Main stuff\FileOperations.cpp(202): warning C4715: 'FileOperations::ChooseFile': not all control paths return a value
+  Main stuff.vcxproj -> C:\Users\Owner\source\repos\Main stuff\Debug\Main stuff.exe

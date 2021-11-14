@@ -1,4 +1,4 @@
-#include "weapon.h"
+#include "header.h"
 #include <string>
 using namespace std;
 
@@ -9,9 +9,11 @@ weapon::weapon() {
 	W_cost = 1;
 }
 
-weapon::weapon(string i, int d) {
+weapon::weapon(string i, int d, int u, int c) {
 	W_item = i;
 	W_damage = d;
+	W_uses = u;
+	W_cost = c;
 }
 
 void weapon::setItem(string n) {
@@ -48,7 +50,7 @@ int weapon::getCost() {
 
 bool weapon::degradation() {
 	W_uses--;
-	if (W_uses = 0) {
+	if (W_uses == 0) {
 		return true; //is it broken?
 	}
 	return false;
