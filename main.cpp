@@ -3,6 +3,10 @@
 #include <vector>
 #include <stdlib.h>
 #include <time.h>
+#include <list>
+#include <string>
+#include <algorithm>
+#include <unordered_map>
 using namespace std;
 
 void playerCombat(player& p, enemy& e, scoreboard& s);
@@ -12,8 +16,149 @@ void initializeWeapons(player& p, vector<vector<weapon>>& weapons, vector<string
 void chooseWeapon(player& p, vector<vector<weapon>>& w);
 
 
+bool cmp(scoreboard a, scoreboard b) {
+    return a.getScore() > b.getScore();
+}
+bool cmpname(scoreboard a, scoreboard b) {
+    return a.getName() < b.getName();
+}
+bool NF(list<scoreboard> l,string a) {
+    cout << "enter name" << endl;
+    string t;
+    bool flag = true;
+    cin >> t;
+    std::list<scoreboard>::iterator iter;
+    for (iter = l.begin(); iter != l.end(); ++iter)
+    {
+        scoreboard test = *iter;
+        if (t == test.getName()) {
+            flag = true;
+            cout << t << " exists" << endl;
+            return 1;
+        }
+        else {
+            flag = false;
+        }
+    }
+    if (flag == false) {
+        cout << t<<" not exist" << endl;
 
+   }
+    return 0;
+}
+
+bool avg(list<scoreboard>& l, list<scoreboard>& b) {
+
+    unordered_map< string, pair<int, int> > umap;
+    list<scoreboard>::iterator iter;
+    for (iter = l.begin(); iter != l.end(); iter++) {
+        if (umap.find(iter->getName()) == umap.end()) {
+            umap[iter->getName()] = { iter->getScore(), 1 };
+        }
+        else {
+            umap[iter->getName()].first += iter->getScore();
+            umap[iter->getName()].second += 1;
+        }
+    }
+    if (l.size() == umap.size()) return false;
+    list <scoreboard> newlist;
+    for (auto it = umap.begin(); it != umap.end(); it++) {
+        //cout << it->first << ' ' << it->second.first << ' ' << it->second.second << '\n';
+        scoreboard n(it->first, it->second.first / it->second.second, "", 0, 0);
+        newlist.push_back(n);
+    }
+    for (auto p = newlist.begin(); p != newlist.end(); ++p)
+        cout << *p;
+    return true;
+}
 int main() {
+    fstream file1;
+    file1.open("scoreboard.txt");
+    if (file1.fail()) {
+        cerr << "This file does not exist." << endl;
+    }
+    string name;
+    int score;
+    string n;
+    int s;
+    list<scoreboard > l;
+    list<scoreboard > o;
+    scoreboard List;
+    while (!file1.eof()) {
+        file1 >> name>> score;
+      //  n = name;
+       // file1 >> score;
+    //    s = score;
+        scoreboard  x(name, score, "", 0, 0);
+        l.push_back(x);
+        scoreboard y(name, score, "", 0, 0);
+        o.push_back(y);
+    }
+    list <scoreboard> ::iterator t;
+    for (t = o.begin(); t != o.end(); ++t)
+        cout << *t;
+    list <scoreboard> ::iterator it;
+    /*for (it = l.begin(); it != l.end(); ++it)
+        cout << *it;*/
+    while (1) {
+        cout << "1- sort by score" << endl;
+        cout << "2- sort by name" << endl;
+        cout << "3- average score" << endl;
+        cout << "4- enter game" << endl;
+        cout << "5- print score board" << endl;
+        cout << "6- search for name " << endl;
+        cout << "7- quit program" << endl;
+        int key;
+        cin >> key;
+        switch (key) {
+        case 1:
+            cout << "------------Score sort------------" << endl;
+            l.sort(cmp);
+            for (it = l.begin(); it != l.end(); ++it)
+                cout << *it;
+            break;
+        case 2:
+            cout << "------------Name sort------------" << endl;
+            l.sort(cmpname);
+            for (it = l.begin(); it != l.end(); ++it)
+                cout << *it;
+            break;
+        case 3:
+            cout << "-------------Avergage score for each name--------" << endl;
+          //  avg(l, l);
+            break;
+        case 4:
+            goto gamestart;
+            break;
+        case 5:
+            cout << "--------------score board---------------" << endl;
+
+            for (it = l.begin(); it != l.end(); ++it)
+                cout << *it;
+            break;
+        case 6:
+            cout << "------------NAme find----------" << endl;
+
+            NF(l, "guy");
+            break;
+        case 7:
+            cout << "the program will now end" << endl;
+            l.clear();
+            return 0;
+        }
+       
+
+    }
+   
+   
+    
+    
+   
+    
+
+gamestart:
+    cout << "game start" << endl;
+ 
     srand(time(NULL));
     FileOperations file;
     //create and assign weapons
